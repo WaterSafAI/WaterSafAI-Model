@@ -25,7 +25,7 @@ Open a Terminal in VS Code with the new virtual environment active. This will le
 Make sure your virtual environment is active
 
 ### PyCharm
-You can create a new virtual environment in PyCharm by opening `WaterSafeAI-App/model` as a PyCharm project and navigating to:
+You can create a new virtual environment in PyCharm by opening the cloned repo as a PyCharm project and navigating to:
 
 `Settings>Project>Python Interpreter` 
 
@@ -33,7 +33,8 @@ Then select:
 
 `Add Interpreter>Add Local Interpreter`
 
-Add the path to your local `python.exe` if PyCharm doesn't automatically detect it, and set the location path to `/model/venv`.
+Add the path to your local `python.exe` if PyCharm doesn't automatically detect it, and set the location path to 
+`/WaterSafAI-Model/venv`.
 
 This will place the new virtual environment in the project directory, and it can be used as a run configuration.
 
