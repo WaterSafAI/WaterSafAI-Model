@@ -19,6 +19,7 @@ if __name__ == '__main__':
     batch_size = 1
 
     data_file = 'data/water_potability.csv'
+    is_labeled = True
 
     print("Learning Rate: ", learning_rate)
     print("Batch size: ", batch_size)
@@ -41,7 +42,7 @@ if __name__ == '__main__':
     optimizer = optim.SGD(model.parameters(), lr=learning_rate, weight_decay=1e-7)
 
     # initialize dataset
-    dataset = FeatureDataset(data_file)
+    dataset = FeatureDataset(data_file, is_labeled)
 
     # generator for random dataset split
     generator = torch.Generator().manual_seed(5)
