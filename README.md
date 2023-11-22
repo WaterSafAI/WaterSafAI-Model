@@ -71,3 +71,31 @@ Run
 ``` 
 python main.py
 ```
+
+# Flask API Model Wrapper
+
+### Download Extra Dependencies
+
+```
+pip install -r requirements.txt
+```
+
+
+### Running the Server
+
+Run the following command from the root of the project:
+
+```
+python app.py
+```
+
+### Calling Predicition Endpoint
+
+Run the following command from any terminal:
+
+```
+curl -X POST http://127.0.0.1:5000/predict ^
+-H "Content-Type: application/json" ^
+-d "{\"ph\": 9.4, \"Hardness\": 145.8, \"Solids\": 13168.5, \"Chloramines\": 9.4, \"Sulfate\": 310.5, \"Conductivity\": 592.6, \"Organic_carbon\": 8.6, \"Trihalomethanes\": 77.5, \"Turbidity\": 3.87}"
+
+```
