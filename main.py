@@ -63,6 +63,7 @@ if __name__ == '__main__':
 
         if test_accuracy > best_accuracy:
             best_accuracy = test_accuracy
+            torch.save(model, 'model.pth')
 
     print("accuracy is {:2.2f}".format(best_accuracy))
 
