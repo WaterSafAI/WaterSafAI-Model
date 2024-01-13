@@ -77,7 +77,7 @@ python main.py
 ### Download Extra Dependencies
 
 ```
-pip install -r requirements.txt
+pip install flask
 ```
 
 
