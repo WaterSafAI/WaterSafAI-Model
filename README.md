@@ -74,28 +74,98 @@ python main.py
 
 # Flask API Model Wrapper
 
-### Download Extra Dependencies
+This application is containerized using Docker. Here are the steps to set up and run the application:
+
+## Docker Setup
+
+1. **Install Docker:** You can download Docker from [here](https://www.docker.com/products/docker-desktop). Follow the instructions for your specific operating system.
+
+2. **Pull the PyTorch image:** Once Docker is installed, you can pull the PyTorch image using the following command:
+
+    ```
+    docker pull pytorch/pytorch
+    ```
+
+## Google Cloud Setup
+
+Next, you need to install the Google Cloud SDK, which includes the gcloud command-line tool. To install the Google Cloud SDK, you need to follow these steps:
+
+### For Windows:
+
+1. Download the Interactive Installer:
+
+    - Go to the [Google Cloud SDK webpage](https://cloud.google.com/sdk/docs/install).
+
+    - Click on the “Install for Windows” button.
+
+    - This will download the interactive installer.
+
+2. Run the Installer:
+
+    - Once downloaded, run the installer and follow the instructions.
+
+    - During installation, it may ask you to log in to your Google Cloud account.
+
+### For macOS and Linux:
+
+1. Open the Terminal:
+
+    - Open a terminal window.
+
+2. Run the Installation Command:
+
+    - Use the following curl command to install the SDK:
+
+        ```
+        curl https://sdk.cloud.google.com | bash
+        ```
+
+3. Restart Your Terminal:
+
+    - Restart your terminal for the changes to take effect.
+
+After installing the Google Cloud SDK, you need to authenticate with your Google Cloud account. Run the following command from the root directory and follow the prompts:
 
 ```
-pip install flask
+gcloud auth application-default login
 ```
 
+## Building and Running the Docker Container
 
-### Running the Server
+1. Build the Docker image:
 
-Run the following command from the root of the project:
+    ```
+    docker build -t flask-service .
+    ```
+
+2. Run the Docker container:
+
+    ```
+    docker run -p 4000:80 flask-service
+    ```
+
+## Making Requests to the Server
+
+Once the server is running, you can make a `curl` request to the server:
 
 ```
-python app.py
-```
-
-### Calling Predicition Endpoint
-
-Run the following command from any terminal:
-
-```
-curl -X POST http://127.0.0.1:5000/predict ^
+curl -X POST http://localhost:4000/predict ^
 -H "Content-Type: application/json" ^
 -d "{\"ph\": 9.4, \"Hardness\": 145.8, \"Solids\": 13168.5, \"Chloramines\": 9.4, \"Sulfate\": 310.5, \"Conductivity\": 592.6, \"Organic_carbon\": 8.6, \"Trihalomethanes\": 77.5, \"Turbidity\": 3.87}"
-
 ```
+
+## Google Cloud Deployments
+
+To deploy the Dockerized application to Google Cloud, you can use Google Cloud Run. Here are the steps:
+
+1. Build your Docker image using Cloud Build:
+
+    ```
+    gcloud builds submit --tag gcr.io/watersafai/flask-service
+    ```
+    
+2. Deploy your image to Cloud Run:
+
+    ```
+    gcloud run deploy --image gcr.io/watersafai/flask-service --platform managed
+    ```
