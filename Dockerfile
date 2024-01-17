@@ -14,4 +14,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 80
 
 # Start Gunicorn and serve the app
-CMD ["gunicorn", "-b", "0.0.0.0:80", "app:app"]
+CMD gunicorn -b :$PORT app:app
